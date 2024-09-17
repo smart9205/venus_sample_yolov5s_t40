@@ -725,7 +725,7 @@ int main(int argc, char *argv[])
 
 
 	/* Step.1 System init */
-    //不拼接
+    //No joint
     //0
     set_joint_res(1920, 1080, 1280, 720, IMPISP_NOT_JOINT);
 	ret = sample_system_init();
@@ -745,7 +745,7 @@ int main(int argc, char *argv[])
 	}
 
 #if 1
-    //fs0 + fs3上下拼接 fs0在上; fs1 + fs4不拼接
+    //fs0 + fs3 joint vertically, fs0 on top; fs1 + fs4 no joint
     //1
     set_joint_res(1280, 720, 1280, 720, IMPISP_MAIN_ON_THE_ABOVE);
     ret = joint_system_init();
@@ -764,7 +764,7 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-    //fs1 + fs4上下拼接 fs1在上; fs0 + fs3不拼接
+    //fs1 + fs4 joint vertically, fs1 on top; fs0 + fs3 no joint
     //2
     set_joint_res(640, 360, 1280, 720, IMPISP_SEC_14_ON_THE_ABOVE);
     ret = joint_system_init();
@@ -783,7 +783,7 @@ int main(int argc, char *argv[])
 		return -1;
 	}
     
-    //fs1 + fs4上下拼接 fs1在上; fs0 + fs3上下拼接 fs0在下
+    //fs1 + fs4 joint vertically, fs1 on top; fs0 + fs3 joint vertically, fs0 at bottom
     //3
     set_joint_res(1920, 1080, 1280, 720, IMPISP_SEC_14_ON_THE_ABOVE | IMPISP_MAIN_ON_THE_UNDER);
     ret = joint_system_init();
@@ -802,7 +802,7 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-    //fs1 + fs4左右拼接 f1在左; fs0 + fs3左右拼接 fs0在右
+    //fs1 + fs4 joint horizontally, f1 on left; fs0 + fs3 joint horizontally, fs0 on right
     //4
     set_joint_res(1920, 1080, 1280, 720, IMPISP_SEC_14_ON_THE_LEFT | IMPISP_MAIN_ON_THE_RIGHT);
     ret = joint_system_init();
@@ -821,7 +821,7 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-    //fs1 + fs4左右拼接 f1在左; fs0 + fs3上下拼接 fs0在上
+    //fs1 + fs4 joint horizontally, f1 on left; fs0 + fs3 joint vertically, fs0 on top
     //5
     set_joint_res(1920, 1080, 1280, 720, IMPISP_SEC_14_ON_THE_LEFT | IMPISP_MAIN_ON_THE_ABOVE);
     ret = joint_system_init();
@@ -840,7 +840,7 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-    //fs1 + fs4上下拼接 f1在上; fs0 + fs3左右拼接 fs0在右
+    //fs1 + fs4 vertically joint, f1 on top; fs0 + fs3 horizontally joint, fs0 on the right
     //6
     set_joint_res(1920, 1080, 1280, 720, IMPISP_SEC_14_ON_THE_ABOVE| IMPISP_MAIN_ON_THE_RIGHT);
     ret = joint_system_init();
@@ -859,7 +859,7 @@ int main(int argc, char *argv[])
 		return -1;
 	}
     
-    //fs0 + fs1左右拼接 f0在左; fs3 + fs4左右拼接 fs3在右
+    //fs0 + fs1 horizontally joint, f0 on the left; fs3 + fs4 horizontally joint, fs3 on the right
     //7
     set_joint_res(1920, 1080, 1280, 720, IMPISP_MAIN_01_ON_THE_LEFT | IMPISP_SEC_34_ON_THE_RIGHT);
     ret = joint_system_init();
@@ -878,7 +878,7 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-    //fs0 + fs1上下拼接 f0在上; fs3 + fs4左右拼接 fs3在左
+    //fs0 + fs1 vertically joint, f0 on top; fs3 + fs4 horizontally joint, fs3 on the left
     //8
     set_joint_res(1920, 1080, 1280, 720, IMPISP_MAIN_01_ON_THE_ABOVE | IMPISP_SEC_34_ON_THE_LEFT);
     ret = joint_system_init();
@@ -898,7 +898,7 @@ int main(int argc, char *argv[])
 	}
 #endif
     
-    //fs0 + fs1上下拼接 f0在下; fs3 + fs4上下拼接 fs3在上
+    //fs0 + fs1 vertically joint, f0 on the bottom; fs3 + fs4 vertically joint, fs3 on top
     //9
     set_joint_res(1920, 1080, 1280, 720, IMPISP_MAIN_01_ON_THE_UNDER | IMPISP_SEC_34_ON_THE_ABOVE);
     ret = joint_system_init();
@@ -917,7 +917,7 @@ int main(int argc, char *argv[])
 		return -1;
 	}
     
-    //不拼接
+    //No joint
     //10
     set_joint_res(1920, 1080, 1280, 720, IMPISP_NOT_JOINT);
 	ret = joint_system_init();

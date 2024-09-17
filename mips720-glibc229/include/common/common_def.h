@@ -52,4 +52,5 @@
 #define VENUS_EXPORT
 #endif
 
+#include "common_alg.h"
 #endif /* __MAGIK_INFERENCEKIT_VENUS_INCLUDE_COMMON_COMMON_DEF_H__ */

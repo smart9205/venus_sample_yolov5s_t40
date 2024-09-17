@@ -13,8 +13,10 @@
 #define __MAGIK_INFERENCEKIT_VENUS_INCLUDE_COMMON_COMMON_INF_C_H__
 #include "common_def.h"
 
+#ifndef ALGORITHM_ID
 VENUS_C_API int magik_venus_init(int size);
 VENUS_C_API int magik_venus_deinit();
 VENUS_C_API int magik_venus_check();
+#endif
 
 #endif /* __MAGIK_INFERENCEKIT_VENUS_INCLUDE_COMMON_COMMON_INF_C_H__ */

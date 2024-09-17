@@ -4,6 +4,7 @@
 #include "core/tensor.h"
 #include "core/type.h"
 
+ALG_PACK_START
 namespace magik {
 namespace venus {
 
@@ -49,7 +50,8 @@ VENUS_API void grid_sample(Tensor &input0, Tensor &grid, Tensor &output);
 /**
  * @brief Add two tensors of input
  * @param Tensor input0, Tensor input1, Tensor output
- *         input0, input1, output has same shape, datatype only support FLOAT
+ *         input0, input1, output has same shape, input datatype only support FLOAT, output datatype
+ * support FLOAT and ubit16
  * @return void
  * @version:
  */
@@ -139,4 +141,5 @@ VENUS_API void tensor_linear_trans(std::vector<Tensor> &inputs, std::vector<Tens
 
 } // namespace venus
 } // namespace magik
+ALG_PACK_END
 #endif

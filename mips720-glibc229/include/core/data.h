@@ -1,9 +1,11 @@
 #ifndef __MAGIK_INFERENCEKIT_VENUS_INCLUDE_CORE_DATA_H__
 #define __MAGIK_INFERENCEKIT_VENUS_INCLUDE_CORE_DATA_H__
+#include "common/common_def.h"
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+ALG_PACK_START
 namespace magik {
 namespace venus {
 /*LowBit*/
@@ -114,4 +116,5 @@ typedef struct {
 #endif
 } // namespace venus
 } // namespace magik
+ALG_PACK_END
 #endif /*__MAGIK_INFERENCEKIT_VENUS_INCLUDE_CORE_DATA_H__*/

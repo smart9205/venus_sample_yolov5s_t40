@@ -14,6 +14,7 @@
 #include "core/type.h"
 #include "utils/all.h"
 
+ALG_PACK_START
 namespace magik {
 namespace venus {
 /*
@@ -67,4 +68,5 @@ VENUS_API void get_objbox_from_output(Tensor &input, std::vector<ObjBbox_t> &out
 VENUS_API void softmax(Tensor &input, Tensor &output);
 } // namespace venus
 } // namespace magik
+ALG_PACK_END
 #endif /* __MAGIK_INFERENCEKIT_VENUS_INCLUDE_UTILS_POSTPROC_H__ */

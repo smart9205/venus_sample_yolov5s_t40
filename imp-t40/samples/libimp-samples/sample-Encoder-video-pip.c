@@ -3,7 +3,7 @@
  *
  * Copyright (C) 2014 Ingenic Semiconductor Co.,Ltd
  *
- * 本文件所有调用的api具体说明均可在 proj/sdk-lv3/include/api/cn/imp/ 目录下头文件中查看
+ * All specific API descriptions called in this document can be viewed in the header files under the proj/sdk-lv3/include/api/cn/imp/ directory.
  *
  * */
 #include <pthread.h>

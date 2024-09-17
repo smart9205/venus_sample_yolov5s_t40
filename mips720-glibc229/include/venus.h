@@ -20,6 +20,7 @@
 #include <memory>
 #include <vector>
 
+ALG_PACK_START
 namespace magik {
 namespace venus {
 class VENUS_API BaseNet {
@@ -84,6 +85,10 @@ public:
 
     /*do inference, get all outputs*/
     virtual int run();
+    /*analysis network node_names nmem info
+     *node_names.size() == 0; printf max nmem node info;
+     */
+    virtual int run_nmem_analysis(std::vector<std::string> node_names = {});
     /*get number of steps*/
     virtual int steps();
     /*do inference, get outputs for each step*/
@@ -108,6 +113,7 @@ VENUS_API uint32_t venus_get_used_mem_size();
 typedef Tensor TensorM;
 } // namespace venus
 } // namespace magik
-
 namespace venus = magik::venus;
+ALG_PACK_END
+
 #endif /* __MAGIK_INFERENCEKIT_VENUS_INCLUDE_VENUS_H__ */

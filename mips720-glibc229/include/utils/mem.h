@@ -13,6 +13,7 @@
 #define __MAGIK_INFERENCEKIT_VENUS_INCLUDE_UTILS_MEM_H__
 #include "core/type.h"
 
+ALG_PACK_START
 namespace magik {
 namespace venus {
 
@@ -32,4 +33,5 @@ VENUS_API void memcopy(void *dst, void *src, int n);
 
 } // namespace venus
 } // namespace magik
+ALG_PACK_END
 #endif /* __MAGIK_INFERENCEKIT_VENUS_INCLUDE_UTILS_MEM_H__ */

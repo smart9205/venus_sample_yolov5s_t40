@@ -1,6 +1,7 @@
 #ifndef __MAGIK_INFERENCEKIT_VENUS_INCLUDE_VERSION_VERSION_H__
 #define __MAGIK_INFERENCEKIT_VENUS_INCLUDE_VERSION_VERSION_H__
 #include "common/common_def.h"
+ALG_PACK_START
 namespace magik {
 namespace venus {
 struct VENUS_API VersionDesc {
@@ -30,4 +31,5 @@ struct VENUS_API VersionDesc {
 };
 } // namespace venus
 } // namespace magik
+ALG_PACK_END
 #endif //__MAGIK_INFERENCEKIT_VENUS_INCLUDE_VERSION_VERSION_H__

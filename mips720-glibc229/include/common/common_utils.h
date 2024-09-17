@@ -17,6 +17,7 @@
 #include <stdint.h>
 #include <vector>
 
+ALG_PACK_START
 namespace magik {
 namespace venus {
 
@@ -41,9 +42,10 @@ struct VENUS_API BsBaseParam {
 };
 
 struct VENUS_API BsExtendParam : public BsBaseParam {
-    BsPadType pad_type; /*BOTTOM_RIGHT or SYMMETRY*/
-    uint8_t pad_val;    /*value of pad*/
-    float scale_x = 0.0;
+    BsPadType pad_type;  /*BOTTOM_RIGHT or SYMMETRY*/
+    uint8_t pad_val;     /*value of pad*/
+    float scale_x = 0.0; /*Scale_x is the right fill ratio(dst_w*scale_x), scale_y is the top fill
+                            ratio(dst_h*scale_y), conflicts with pad_type */
     float scale_y = 0.0;
 };
 
@@ -84,4 +86,5 @@ typedef NmsType NmsType_t;
 typedef DetectorType DetectorType_t;
 } // namespace venus
 } // namespace magik
+ALG_PACK_END
 #endif /* __MAGIK_INFERENCEKIT_VENUS_INCLUDE_COMMON_COMMON_UTILS_H__ */

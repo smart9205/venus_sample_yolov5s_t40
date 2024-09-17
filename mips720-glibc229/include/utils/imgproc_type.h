@@ -1,5 +1,6 @@
 #ifndef __MAGIK_INFERENCEKIT_VENUS_INCLUDE_UTILS_IMGPROC_TYPE_H__
 #define __MAGIK_INFERENCEKIT_VENUS_INCLUDE_UTILS_IMGPROC_TYPE_H__
+ALG_PACK_START
 namespace magik {
 namespace venus {
 
@@ -31,6 +32,7 @@ enum class PaddingType : int {
      *                              |U   V   U   V   U   V   128 128|
      *                              |128 128 128 128 128 128 128 128|
      *                              +-------------------------------+
+     *** Scale proportionally, only fill bottom or right ***
      */
     BOTTOM_RIGHT = 0,
 
@@ -71,4 +73,5 @@ enum class AddressLocate : int {
 };
 } // namespace venus
 } // namespace magik
+ALG_PACK_END
 #endif /* __MAGIK_INFERENCEKIT_VENUS_INCLUDE_UTILS_IMGPROC_TYPE_H__ */

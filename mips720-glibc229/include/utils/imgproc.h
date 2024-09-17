@@ -16,6 +16,7 @@
 #include "core/type.h"
 #include "imgproc_rm.h"
 #include <vector>
+ALG_PACK_START
 namespace magik {
 namespace venus {
 
@@ -116,6 +117,7 @@ VENUS_API int warp_affine(const Tensor &input, Tensor &output, Tensor &matrix,
  * matrix: affine matrix tensor
  * input_locate: NMEM_VIRTUAL or RMEM_PHYSICAL
  * param: affine param
+ * if RMEM_PHYSICAL: input store rmem_pysical and param->AddressDesc>vir_addr store rmem_virtual;
  */
 VENUS_API int common_affine(const void *input, Tensor &output, Tensor &matrix,
                             AddressLocate input_locate, BsCommonParam *param);
@@ -126,6 +128,7 @@ VENUS_API int common_affine(const void *input, Tensor &output, Tensor &matrix,
  * matrix: affine matrix tensor
  * boxes: boxes for input tensor crop
  * param: affine param
+ * if RMEM_PHYSICAL: input store rmem_pysical and param->AddressDesc>vir_addr store rmem_virtual;
  */
 VENUS_API int crop_affine(const Tensor &input, std::vector<Tensor> &output,
                           std::vector<Tensor> &matrix, std::vector<Bbox_t> &boxes,
@@ -138,6 +141,7 @@ VENUS_API int crop_affine(const Tensor &input, std::vector<Tensor> &output,
  * matrix: affine matrix tensor
  * input_locate: NMEM_VIRTUAL or RMEM_PHYSICAL
  * param: affine param
+ * if RMEM_PHYSICAL: input store rmem_pysical and param->AddressDesc>vir_addr store rmem_virtual;
  */
 VENUS_API int crop_common_affine(const void *input, std::vector<Tensor> &output,
                                  std::vector<Tensor> &matrix, std::vector<Bbox_t> &boxes,
@@ -159,6 +163,7 @@ VENUS_API int warp_perspective(const Tensor &input, Tensor &output, Tensor &matr
  * matrix: perspective matrix tensor
  * input_locate: NMEM_VIRTUAL or RMEM_PHYSICAL
  * param: perspective param
+ * if RMEM_PHYSICAL: input store rmem_pysical and param->AddressDesc>vir_addr store rmem_virtual;
  */
 VENUS_API int common_perspective(const void *input, Tensor &output, Tensor &matrix,
                                  AddressLocate input_locate, BsCommonParam *param);
@@ -180,6 +185,7 @@ VENUS_API int crop_perspective(const Tensor &input, std::vector<Tensor> &output,
  * boxes: boxes for input tensor crop
  * input_locate: NMEM_VIRTUAL or RMEM_PHYSICAL
  * param: perspective param
+ * if RMEM_PHYSICAL: input store rmem_pysical and param->AddressDesc>vir_addr store rmem_virtual;
  */
 VENUS_API int crop_common_perspective(const void *input, std::vector<Tensor> &output,
                                       std::vector<Tensor> &matrix, std::vector<Bbox_t> &boxes,
@@ -190,6 +196,7 @@ VENUS_API int crop_common_perspective(const void *input, std::vector<Tensor> &ou
  * output: output tensor
  * input_locate: NMEM_VIRTUAL or RMEM_PHYSICAL
  * param: resize param
+ * if RMEM_PHYSICAL: input store rmem_pysical and param->AddressDesc>vir_addr store rmem_virtual;
  */
 VENUS_API int common_resize(const void *input, Tensor &output, AddressLocate input_locate,
                             BsCommonParam *param);
@@ -197,4 +204,5 @@ typedef PaddingType MarginType;
 typedef AddressLocate AddressAttr;
 } // namespace venus
 } // namespace magik
+ALG_PACK_END
 #endif /* __MAGIK_INFERENCEKIT_VENUS_INCLUDE_UTILS_IMGPROC_H__ */

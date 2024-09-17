@@ -13,6 +13,7 @@
 #define __MAGIK_INFERENCEKIT_VENUS_INCLUDE_COMMON_COMMON_TYPE_H__
 #include "common_def.h"
 
+ALG_PACK_START
 namespace magik {
 namespace venus {
 enum class ShareMemoryMode : int VENUS_API {
@@ -157,4 +158,5 @@ struct VENUS_API ConvParam {
 
 } // namespace venus
 } // namespace magik
+ALG_PACK_END
 #endif /* __MAGIK_INFERENCEKIT_VENUS_INCLUDE_COMMON_COMMON_TYPE_H__ */

@@ -17,14 +17,16 @@
 #include <stdint.h>
 #include <vector>
 
+ALG_PACK_START
 namespace magik {
 namespace venus {
 using shape_t = std::vector<int32_t>;
 typedef shape_t Shape;
 class VENUS_API Tensor {
 public:
-    Tensor(shape_t shape, TensorFormat fmt = TensorFormat::NHWC,
-           DataType data_type = DataType::UINT8);
+    Tensor(shape_t shape);
+    Tensor(shape_t shape, TensorFormat fmt);
+    Tensor(shape_t shape, TensorFormat fmt, DataType data_type);
     Tensor(std::initializer_list<int32_t> shape, TensorFormat fmt = TensorFormat::NHWC);
     /*data must be alloced by nmem_memalign, and should be aligned with 64 bytes*/
     Tensor(void *vdata, size_t bytes_size, TensorFormat fmt = TensorFormat::NHWC);
@@ -47,6 +49,10 @@ public:
     const T *data() const;
     template <typename T>
     T *mudata() const;
+#if defined(VENUS_AIPV20)
+    template <typename T>
+    const T *pdata() const;
+#endif
     void free_data() const;
     /*data must be alloced by Device::CPU, and should be aligned with 64 bytes*/
     int set_data(void *vdata, size_t bytes_size);
@@ -56,6 +62,7 @@ public:
     int step(int dim) const;
     int get_bytes_size() const;
     void set_dim_align(int dim, int align);
+    void set_data_fmt(TensorFormat fmt) const;
 
 private:
     void *tensorx = NULL;
@@ -63,5 +70,6 @@ private:
 };
 } // namespace venus
 } // namespace magik
+ALG_PACK_END
 
 #endif /* __MAGIK_INFERENCEKIT_VENUS_INCLUDE_CORE_TENSOR_H__ */

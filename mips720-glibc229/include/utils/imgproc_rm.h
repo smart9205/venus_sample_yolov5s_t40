@@ -6,6 +6,7 @@
 #include "core/type.h"
 #include "imgproc_type.h"
 #include <vector>
+ALG_PACK_START
 namespace magik {
 namespace venus {
 
@@ -144,4 +145,5 @@ VENUS_API int crop_perspective_nv12(const Tensor &input, std::vector<Tensor> &ou
                                     std::vector<Bbox_t> &boxes);
 } // namespace venus
 } // namespace magik
+ALG_PACK_END
 #endif /* __MAGIK_INFERENCEKIT_VENUS_INCLUDE_UTILS_IMGPROC_RM_H__ */
