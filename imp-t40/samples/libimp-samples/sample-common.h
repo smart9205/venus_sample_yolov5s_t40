@@ -41,21 +41,21 @@ extern "C"
 /******************************************** Sensor Attribute Table *********************************************/
 
 /* first sensor */
-#define FIRST_SNESOR_NAME 			"gc4653"			//sensor name (match with snesor driver name)
-#define	FIRST_I2C_ADDR				0x29				//sensor i2c address
-#define	FIRST_I2C_ADAPTER_ID		1					//sensor controller number used (0/1/2/3)
-#define FIRST_SENSOR_WIDTH			2560				//sensor width
-#define FIRST_SENSOR_HEIGHT			1440				//sensor height
+#define FIRST_SNESOR_NAME 			"gc2063"			//sensor name (match with snesor driver name)
+#define	FIRST_I2C_ADDR				0x37				//sensor i2c address
+#define	FIRST_I2C_ADAPTER_ID		1				//sensor controller number used (0/1/2/3)
+#define FIRST_SENSOR_WIDTH			1920				//sensor width
+#define FIRST_SENSOR_HEIGHT		1080				//sensor height
 #define	FIRST_RST_GPIO				GPIO_PC(27)			//sensor reset gpio
-#define	FIRST_PWDN_GPIO				-1					//sensor pwdn gpio
+#define	FIRST_PWDN_GPIO			-1					//sensor pwdn gpio
 #define	FIRST_POWER_GPIO			-1					//sensor power gpio
-#define	FIRST_SENSOR_ID				0					//sensor index
-#define	FIRST_VIDEO_INTERFACE		IMPISP_SENSOR_VI_MIPI_CSI0 	//sensor interface type (dvp/csi0/csi1)
+#define	FIRST_SENSOR_ID			0					//sensor index
+#define	FIRST_VIDEO_INTERFACE		IMPISP_SENSOR_VI_MIPI_CSI0	//sensor interface type (dvp/csi0/csi1)
 #define	FIRST_MCLK					IMPISP_SENSOR_MCLK1		//sensor clk source (mclk0/mclk1/mclk2)
 #define	FIRST_DEFAULT_BOOT			0					//sensor default mode(0/1/2/3/4)
 
 /* second sensor */
-#define SECOND_SNESOR_NAME 			"gc2063"			//sensor name (match with snesor driver name)
+#define SECOND_SNESOR_NAME 			"gc2063s1"			//sensor name (match with snesor driver name)
 #define	SECOND_I2C_ADDR				0x37				//sensor i2c address
 #define	SECOND_I2C_ADAPTER_ID		3					//sensor controller number used (0/1/2/3)
 #define SECOND_SENSOR_WIDTH			1920				//sensor width
@@ -95,7 +95,7 @@ extern "C"
 /* third sensor output channel (6) */
 /* dual sensor joint mode only channel (0/1/2) */
 #define CHN0_EN                	1
-#define CHN1_EN              	0
+#define CHN1_EN              	1
 #define CHN2_EN                	0
 
 #define CHN3_EN					0
@@ -138,7 +138,7 @@ extern "C"
 #define ENC_VIDEO_CHANNEL		0
 #define ENC_JPEG_CHANNEL		1
 
-#define STREAM_FILE_PATH_PREFIX		"/tmp"
+#define STREAM_FILE_PATH_PREFIX		"/tmp/mnt/sdcard/Recording"
 #define SNAP_FILE_PATH_PREFIX		"/tmp"
 
 #define RESIZE_TIMESTAMP        0
@@ -169,6 +169,7 @@ extern "C"
 
 #define CHN_ENABLE 		1
 #define CHN_DISABLE 	0
+#define NR_FRAMES_TO_REC		60	// updated
 
 /*#define SUPPORT_RGB555LE*/
 
@@ -213,7 +214,7 @@ IMPRgnHandle *sample_osd_init(int grpNum);
 int sample_osd_exit(IMPRgnHandle *prHandle,int grpNum);
 
 int sample_get_frame();
-int sample_get_video_stream();
+int sample_get_video_stream();  // modified
 int sample_get_video_stream_byfd();
 int sample_get_jpeg_snap();
 
