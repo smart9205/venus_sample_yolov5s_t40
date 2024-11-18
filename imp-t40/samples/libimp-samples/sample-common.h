@@ -232,3 +232,4 @@ int sample_ipc_getframeEx(void);
 #endif /* __cplusplus */
 
 #endif /* __SAMPLE_COMMON_H__ */
+

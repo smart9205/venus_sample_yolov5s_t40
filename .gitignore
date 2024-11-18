@@ -2,4 +2,5 @@
 *.a
 /imp-t40/doc
 *.o
+*.zip
 

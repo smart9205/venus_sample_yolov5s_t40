@@ -69,7 +69,7 @@ void check_pixel_offset(PixelOffset &pixel_offset){
 
 void trans_coords(std::vector<magik::venus::ObjBbox_t> &in_boxes, PixelOffset &pixel_offset,float scale){
     
-    printf("pad_x:%d pad_y:%d scale:%f \n",pixel_offset.left,pixel_offset.top,scale);
+    // printf("pad_x:%d pad_y:%d scale:%f \n",pixel_offset.left,pixel_offset.top,scale);
     for(int i = 0; i < in_boxes.size(); i++) {
 
         in_boxes[i].box.x0 = (in_boxes[i].box.x0 - pixel_offset.left) / scale;
@@ -102,7 +102,7 @@ int Goto_Magik_Detect(char * nv12Data, int width, int height)
     int ori_img_w;
     float scale;
     int in_w = 640, in_h = 384;
-
+    // int in_w = 640, in_h = 640;
     
     PixelOffset pixel_offset;
  
@@ -118,11 +118,11 @@ int Goto_Magik_Detect(char * nv12Data, int width, int height)
     // get ori image w h
     ori_img_w = input_src.w;
     ori_img_h = input_src.h;
-    printf("ori_image w,h: %d ,%d \n",ori_img_w,ori_img_h);
+    // printf("ori_image w,h: %d ,%d \n",ori_img_w,ori_img_h);
     int line_stride = ori_img_w;
     input = test_net->get_input(0);
     magik::venus::shape_t rgba_input_shape = input->shape();
-    printf("model-->%d ,%d %d \n",rgba_input_shape[1], rgba_input_shape[2], rgba_input_shape[3]);
+    // printf("model-->%d %d %d \n",rgba_input_shape[1], rgba_input_shape[2], rgba_input_shape[3]);
     if (cvtbgra)
     {
         input->reshape({1, in_h, in_w , 4});
@@ -131,8 +131,9 @@ int Goto_Magik_Detect(char * nv12Data, int width, int height)
         input->reshape({1, in_h, in_w, 1});
     }
     uint8_t *indata = input->mudata<uint8_t>();
-    std::cout << "input shape:" << std::endl;
-    printf("-->%d %d \n",in_h, in_w);
+    // std::cout << "input shape:" << std::endl;
+    // printf("-->%d %d \n",in_h, in_w);
+
     //resize and padding
     magik::venus::Tensor temp_ori_input({1, ori_img_h, ori_img_w, 1}, TensorFormat::NV12);
     uint8_t *tensor_data = temp_ori_input.mudata<uint8_t>();
@@ -142,7 +143,7 @@ int Goto_Magik_Detect(char * nv12Data, int width, int height)
     float scale_x = (float)in_w/(float)ori_img_w;
     float scale_y = (float)in_h/(float)ori_img_h;
     scale = scale_x < scale_y ? scale_x:scale_y;  //min scale
-    printf("scale---> %f\n",scale);
+    // printf("scale---> %f\n",scale);
 
     int valid_dst_w = (int)(scale*ori_img_w);
     if (valid_dst_w % 2 == 1)
@@ -178,19 +179,20 @@ int Goto_Magik_Detect(char * nv12Data, int width, int height)
     }
     magik::venus::common_resize((const void*)tensor_data, *input.get(), magik::venus::AddressLocate::NMEM_VIRTUAL, &param);
 
-    printf("resize padding over: \n");
-    printf("resize valid_dst, w:%d h %d\n",valid_dst_w,valid_dst_h);
-    printf("padding info top :%d bottom %d left:%d right:%d \n",pixel_offset.top,pixel_offset.bottom,pixel_offset.left,pixel_offset.right);
+    // printf("resize padding over: \n");
+    // printf("resize valid_dst, w:%d h %d\n",valid_dst_w,valid_dst_h);
+    // printf("padding info top :%d bottom %d left:%d right:%d \n",pixel_offset.top,pixel_offset.bottom,pixel_offset.left,pixel_offset.right);
 
     test_net->run();
+    printf ("--------------- run model ----------");
 
     std::unique_ptr<const venus::Tensor> out0 = test_net->get_output(0);
     std::unique_ptr<const venus::Tensor> out1 = test_net->get_output(1);
     std::unique_ptr<const venus::Tensor> out2 = test_net->get_output(2);
 
-    std::unique_ptr<const venus::Tensor> out_tensor = test_net->get_output(0);
-    const float *out_ptr = out_tensor->data<float>();
-    write_output_bin(out_ptr, out_tensor->shape()[0] * out_tensor->shape()[1] * out_tensor->shape()[2] * out_tensor->shape()[3]);
+    // std::unique_ptr<const venus::Tensor> out_tensor = test_net->get_output(0);
+    // const float *out_ptr = out_tensor->data<float>();
+    // write_output_bin(out_ptr, out_tensor->shape()[0] * out_tensor->shape()[1] * out_tensor->shape()[2] * out_tensor->shape()[3]);
 
     auto shape0 = out0->shape();
     auto shape1 = out1->shape();
@@ -224,7 +226,7 @@ int Goto_Magik_Detect(char * nv12Data, int width, int height)
 
     for (int i = 0; i < int(output_boxes.size()); i++) {
         auto person = output_boxes[i];
-        printf("box:   ");
+        printf("Person:   ");
         printf("%d ",(int)person.box.x0);
         printf("%d ",(int)person.box.y0);
         printf("%d ",(int)person.box.x1);
@@ -232,6 +234,8 @@ int Goto_Magik_Detect(char * nv12Data, int width, int height)
         printf("%.2f ",person.score);
         printf("\n");
     }
+    if (int(output_boxes.size()) == 0)
+        printf("No person detected !\n");
 
     return 0;
 }
@@ -271,3 +275,4 @@ void manyclass_nms(std::vector<magik::venus::ObjBbox_t> &input, std::vector<magi
     magik::venus::nms(classbuf, output, nms_threshold, magik::venus::NmsType::HARD_NMS);
   }
 }
+

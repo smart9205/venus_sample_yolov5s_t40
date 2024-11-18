@@ -1459,7 +1459,7 @@ printf("[%s][%d]\n",__func__,__LINE__);
 	IMPOSDRgnAttr rAttrMosaic;
 	memset(&rAttrMosaic, 0, sizeof(IMPOSDRgnAttr));
 
-	rAttrMosaic.type = OSD_REG_MOSAIC;
+	//rAttrMosaic.type = OSD_REG_MOSAIC;
 	rAttrMosaic.mosaicAttr.x = 1000;
 	rAttrMosaic.mosaicAttr.y = 100;
 	rAttrMosaic.mosaicAttr.mosaic_width = 200;

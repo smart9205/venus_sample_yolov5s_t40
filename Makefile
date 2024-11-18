@@ -1,4 +1,4 @@
-TOPDIR ?= ./mips720-glibc229/
+TOPDIR ?= ./2.29/
 IMP_DIR ?= ./imp-t40
 CROSS_COMPILE:=mips-linux-gnu-
 
@@ -80,6 +80,8 @@ endif
 LIBS += ${IMP_DIR}/lib/uclibc/libalog.a ${IMP_DIR}/lib/uclibc/libimp.a
 
 OBJS := inference_nv12.o sample-Magik.o ${IMP_DIR}/samples/libimp-samples/sample-common.o
+# OBJS := inference.o
+
 
 
 %.o:%.cpp
